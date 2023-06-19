@@ -1,5 +1,5 @@
 import * as cron from "node-cron";
-import { refreshUserTokens } from "./refreshUserTokens.js";
+import { refreshUserTokens } from "./refreshFitbitUserTokens.js";
 import { getSteps } from "./getSteps.js";
 import "dotenv/config";
 

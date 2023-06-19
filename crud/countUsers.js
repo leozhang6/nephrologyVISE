@@ -3,25 +3,20 @@ import "dotenv/config";
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
-export async function findUser(userId) {
-  var exists = false;
+export async function countUsers() {
+  var count = 0;
   try {
     // Connect to the MongoDB cluster
     await client.connect();
-    const result = await client
+
+    const users = await client
       .db("nephrologyDB")
       .collection("users")
-      .findOne({ _id: userId });
-    (async () => {
-      if (result) {
-        exists = true;
-      } else {
-        exists = false;
-      }
-    })();
+      .countDocuments({});
+    count = users;
   } finally {
     // Close the connection to the MongoDB cluster
     await client.close();
-    return exists;
+    return count;
   }
 }
