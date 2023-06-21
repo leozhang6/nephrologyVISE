@@ -17,5 +17,3 @@ export async function createUser(newUser) {
     await client.close();
   }
 }
-
-await createUser().catch(console.error);

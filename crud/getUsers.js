@@ -22,4 +22,4 @@ export async function getUsers() {
   }
 }
 
-await getUsers().catch(console.error);
+// await getUsers().catch(console.error);

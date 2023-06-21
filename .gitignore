@@ -1,4 +1,2 @@
 node_modules/
-twilio-testing.py
-credentials.js
 .env

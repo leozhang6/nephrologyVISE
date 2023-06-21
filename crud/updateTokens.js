@@ -23,5 +23,3 @@ export async function updateTokens(prevAuth, newAuth, newRefresh) {
     await client.close();
   }
 }
-
-await updateTokens().catch(console.error);

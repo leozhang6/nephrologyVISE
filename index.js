@@ -21,14 +21,13 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 // redirect the user to the Fitbit authorization page
 app.get("/authorize::phoneNumber", (req, res) => {
   // request access to the user's activity, heartrate, location, nutrion, profile, settings, sleep, social, and weight scopes
-  const phone = req.params.phoneNumber;
+  const phone = encodeURIComponent(req.params.phoneNumber);
   const redirect = client.getAuthorizeUrl(
     "activity heartrate location nutrition profile settings sleep social weight",
     "http://localhost:3001/callback",
     null,
     phone
   );
-  console.log("Here" + redirect);
   res.redirect(redirect);
 });
 
@@ -38,10 +37,9 @@ app.get("/callback", (req, res) => {
   client
     .getAccessToken(req.query.code, "http://localhost:3001/callback")
     .then(async (result) => {
-      let user = {};
-      user.phoneNumber = req.query.state;
+      var user = {};
+      user.phoneNumber = decodeURIComponent(req.query.state);
       user._id = result.user_id;
-      console.log(user._id);
       user.authToken = result.access_token;
       user.refreshToken = result.refresh_token;
       user.patientNum = (await countUsers()) + 1;
@@ -50,11 +48,11 @@ app.get("/callback", (req, res) => {
       } else {
         console.log("user already authorized");
       }
+      res.sendFile(__dirname + "/index.html");
     })
     .catch((err) => {
       res.status(err.status).send(err);
     });
-  res.sendFile(__dirname + "/index.html");
 });
 
 // launch the server
