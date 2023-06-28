@@ -5,14 +5,16 @@ import "dotenv/config";
 
 const client = twilio(accountSid, authToken);
 
-async function sendSMS(toNumber) {
+//sends sms link containing survey link to given number
+async function sendSMS(toNumber, patientNumber) {
   client.messages
     .create({
-      body: "Please fill out the following survey: https://redcap.vanderbilt.edu/surveys/?s=RY7RX9CC9L4EEDJL",
+      body:
+        "Your patient number is: " +
+        patientNumber +
+        ". Please fill out the following survey: https://redcap.vanderbilt.edu/surveys/?s=RY7RX9CC9L4EEDJL",
       from: "+13203346913",
-      to: "925 255 6057",
+      to: toNumber,
     })
     .then((message) => console.log(message.sid));
 }
-
-// await sendSMS();

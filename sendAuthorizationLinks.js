@@ -7,6 +7,8 @@ import csv from "csvtojson";
 const client = twilio(accountSid, authToken);
 
 const numberList = await await csv().fromFile("./phoneNumbers.csv");
+
+//sends dynamic link to each number on given csv
 for (let i = 0; i < numberList.length; i++) {
   const number = numberList[i].numbers;
   const msg = "http://localhost:3001/authorize:" + number;

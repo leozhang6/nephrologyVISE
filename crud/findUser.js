@@ -7,6 +7,7 @@ export async function findUser(userId) {
   var exists = false;
   try {
     // Connect to the MongoDB cluster
+
     await client.connect();
     const result = await client
       .db("nephrologyDB")
