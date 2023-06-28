@@ -1,4 +1,5 @@
 Research Aid for Dr Devika Nair
+
 To begin, add phone numbers of patients to phoneNumbers.csv
 
 Start fitbit authorization server and automated survey process by running node index.js
