@@ -1,2 +1,0 @@
-bash scripts
-scp -i ~/Downloads/testing.pem ~/Desktop/nephrology-project/twilio-testing.py ec2-user@3.137.190.112:/home/ec2-user
