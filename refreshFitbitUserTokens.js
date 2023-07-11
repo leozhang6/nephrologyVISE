@@ -4,7 +4,7 @@ import { updateTokens } from "./crud/updateTokens.js";
 import "dotenv/config";
 
 const client = new FitbitApiClient({
-  clientId: "23QXT3",
+  clientId: process.env.FITBIT_CLIENT_ID,
   clientSecret: process.env.FITBIT_CLIENT_SECRET,
   apiVersion: "1.2",
 });

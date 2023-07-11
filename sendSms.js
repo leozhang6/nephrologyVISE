@@ -6,7 +6,7 @@ import "dotenv/config";
 const client = twilio(accountSid, authToken);
 
 //sends sms link containing survey link to given number
-async function sendSMS(toNumber, patientNumber) {
+export async function sendSms(toNumber, patientNumber) {
   client.messages
     .create({
       body:

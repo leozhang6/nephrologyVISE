@@ -1,6 +1,6 @@
 import * as cron from "node-cron";
 import { refreshUserTokens } from "./refreshFitbitUserTokens.js";
-import { getSteps } from "./getSteps.js";
+import { getSteps } from "./checkSteps.js";
 import "dotenv/config";
 
 export function scheduleJobs() {
@@ -13,8 +13,7 @@ export function scheduleJobs() {
   cron.schedule("*/10 * * * *", async () => {
     const steps = await getSteps();
     for (let i = 0; i < steps.length; i++) {
-      //if steps has no count for last hour
-      //  sendSMS(correspondingNumber)
+      console.log(steps);
     }
   });
 }
